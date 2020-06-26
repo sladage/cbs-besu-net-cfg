@@ -1,0 +1,20 @@
+version: "3"
+services:
+  cbs-node:
+    build: .
+    ports:
+      - "8547:8547"
+      - "30305:30305"
+      - "30305:30305/udp"
+    entrypoint:
+      - "besu"
+      - "--data-path=/data"
+      - "--genesis-file=/genesis.json"
+      - "--bootnodes=enode://17428fc071e46723cf40bfcc28b28bf7731d9ca1e752a4d8191b89017f42582262f506e61ba535a97dc24b8b484291ad2bb669488f9ab45dac70d264448189e9@1.2.3.4:30303"
+      - "--rpc-http-enabled"
+      - "--rpc-http-api=ETH,NET,IBFT"
+      - "--host-whitelist=*"
+      - "--rpc-http-cors-origins=all"
+      - "--p2p-port=30305"
+      - "--rpc-http-port=8547"
+      - "--min-gas-price=0"

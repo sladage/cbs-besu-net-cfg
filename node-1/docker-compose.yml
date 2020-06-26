@@ -1,0 +1,18 @@
+version: "3"
+services:
+  cbs-boot-node:
+    build: .
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+      - "30303:30303/udp"
+    entrypoint:
+      - "besu"
+      - "--data-path=/data"
+      - "--genesis-file=/genesis.json"
+      - "--rpc-http-enabled"
+      - "--rpc-http-api=ETH,NET,IBFT"
+      - "--host-whitelist=*"
+      - "--rpc-http-cors-origins=all"
+      - "--min-gas-price=0"

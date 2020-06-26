@@ -1,0 +1,72 @@
+version: "3"
+services:
+  10.4.90.12:
+    build: node-1
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+      - "30303:30303"
+      - "30303:30303/udp"
+    entrypoint:
+      - "besu"
+      - "--data-path=/data"
+      - "--genesis-file=/genesis.json"
+      - "--rpc-http-enabled"
+      - "--rpc-http-api=ETH,NET,IBFT"
+      - "--host-whitelist=*"
+      - "--rpc-http-cors-origins=all"
+      - "--min-gas-price=0"
+  cbs-node-2:
+    build: node-2
+    ports:
+      - "8549:8549"
+      - "30304:30304"
+      - "30304:30304/udp"
+    entrypoint:
+      - "besu"
+      - "--data-path=/data"
+      - "--genesis-file=/genesis.json"
+      - "--bootnodes=enode://17428fc071e46723cf40bfcc28b28bf7731d9ca1e752a4d8191b89017f42582262f506e61ba535a97dc24b8b484291ad2bb669488f9ab45dac70d264448189e9@10.4.90.12:30303"
+      - "--rpc-http-enabled"
+      - "--rpc-http-api=ETH,NET,IBFT"
+      - "--host-whitelist=*"
+      - "--rpc-http-cors-origins=all"
+      - "--p2p-port=30304"
+      - "--rpc-http-port=8549"
+      - "--min-gas-price=0"
+  cbs-node-3:
+    build: node-3
+    ports:
+      - "8547:8547"
+      - "30305:30305"
+      - "30305:30305/udp"
+    entrypoint:
+      - "besu"
+      - "--data-path=/data"
+      - "--genesis-file=/genesis.json"
+      - "--bootnodes=enode://17428fc071e46723cf40bfcc28b28bf7731d9ca1e752a4d8191b89017f42582262f506e61ba535a97dc24b8b484291ad2bb669488f9ab45dac70d264448189e9@10.4.90.12:30303"
+      - "--rpc-http-enabled"
+      - "--rpc-http-api=ETH,NET,IBFT"
+      - "--host-whitelist=*"
+      - "--rpc-http-cors-origins=all"
+      - "--p2p-port=30305"
+      - "--rpc-http-port=8547"
+      - "--min-gas-price=0"
+  cbs-node-4:
+    build: node-4
+    ports:
+      - "8548:8548"
+      - "30306:30306"
+      - "30306:30306/udp"
+    entrypoint:
+      - "besu"
+      - "--data-path=/data"
+      - "--genesis-file=/genesis.json"
+      - "--bootnodes=enode://17428fc071e46723cf40bfcc28b28bf7731d9ca1e752a4d8191b89017f42582262f506e61ba535a97dc24b8b484291ad2bb669488f9ab45dac70d264448189e9@10.4.90.12:30303"
+      - "--rpc-http-enabled"
+      - "--rpc-http-api=ETH,NET,IBFT"
+      - "--host-whitelist=*"
+      - "--rpc-http-cors-origins=all"
+      - "--p2p-port=30306"
+      - "--rpc-http-port=8548"
+      - "--min-gas-price=0"
